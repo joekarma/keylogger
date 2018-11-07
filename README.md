@@ -6,18 +6,18 @@ This repository holds the code for a simple and easy to use keylogger for Mac OS
 
 ## Usage
 
-Start by cloning the repository and running the proper make commands, shown below. By default, the application installs to `/usr/local/bin/keylogger`, which can easily be changed in the [`Makefile`](https://github.com/caseyscarborough/keylogger/blob/master/Makefile). `make install` may require root access.
+Start by cloning the repository and running the proper make commands, shown below. By default, the application installs to `/usr/local/bin/keylogger`, which can easily be changed in the [`Makefile`](https://github.com/joekarma/keylogger/blob/master/Makefile). `make install` may require root access.
 
 ```bash
-$ git clone https://github.com/caseyscarborough/keylogger && cd keylogger
+$ git clone https://github.com/joekarma/keylogger && cd keylogger
 $ make && make install
 ```
 
-The application by default logs to `/var/log/keystroke.log`, which may require root access depending on your system's permissions. You can change this in [`keylogger.h`](https://github.com/caseyscarborough/keylogger/blob/master/keylogger.h#L12) if necessary.
+The application by default logs to `/var/log/keystroke-<timestamp>.log`, which may require root access depending on your system's permissions. You can change this in `keylogger.c if necessary. Logs are split by timestamp of keylogger start so that they can more easily be backed up.
 
 ```bash
 $ keylogger
-Logging to: /var/log/keystroke.log
+Logging to: /var/log/keystroke-nnnnnnnnn.log
 ```
 
 If you'd like the application to run on startup, run the `startup` make target:
@@ -32,20 +32,6 @@ You can completely remove the application from your system (including the startu
 
 ```bash
 $ sudo make uninstall
-```
-
-### Optional Parameters
-
-You can pass in two optional parameters to the program. The `clear` option will clear the logs at the default location. Any other argument passed in will be used as the path to the log file for that process. See below:
-
-```bash
-# Clear the logfile.
-$ keylogger clear
-Logfile cleared.
-
-# Specify a logfile location.
-$ keylogger ~/logfile.txt
-Logging to: /Users/Casey/logfile.txt
 ```
 
 ## Contributing
