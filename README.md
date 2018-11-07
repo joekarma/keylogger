@@ -1,6 +1,6 @@
 # Mac OS X Keylogger
 
-This repository holds the code for a simple and easy to use keylogger for Mac OS X. It is not meant to be malicious, and is written as a proof of concept, though it can be adapted for personal analytics such as described by [Stephen Wolfram](http://blog.stephenwolfram.com/2012/03/the-personal-analytics-of-my-life/). There is not a lot of information on keyloggers or implementing them on Mac OS X, and most of the ones I've seen do not work as indicated. This project aims to be a simple implementation on how it can be accomplished on OS X.
+This repository holds the code for a simple and easy to use keylogger for Mac OS X. It is not meant to be malicious, and is written primarily as a proof of concept, though it can be adapted for personal analytics such as described by [Stephen Wolfram](http://blog.stephenwolfram.com/2012/03/the-personal-analytics-of-my-life/). There is not a lot of information on keyloggers or implementing them on Mac OS X, and most of the ones I've seen do not work as indicated. This project aims to be a simple implementation on how it can be accomplished on OS X.
 
 > Note: This keylogger is currently unable to capture secure input such as passwords. See issue #3 for more information.
 
@@ -28,7 +28,9 @@ $ sudo make startup
 
 ## Format of the log file
 
-The log file stores each keystroke on its own line, with an epoch timestamp with seconds level granularity - eventually I might change this to milliseconds level granularity, but implementation for that is [slightly more complicated](https://stackoverflow.com/questions/3756323/how-to-get-the-current-time-in-milliseconds-from-c-in-linux). The log file format is perhaps better explained with an example, shown below.
+The log file stores each keystroke on its own line, each character placed beside an epoch timestamp with seconds level granularity. The hope is to eventually change this to milliseconds level granularity, but implementation for that is [slightly more complicated](https://stackoverflow.com/questions/3756323/how-to-get-the-current-time-in-milliseconds-from-c-in-linux) though obviously perfectly doable if you're okay with NTP noise.
+
+The log file format is best explained with an example, shown below.
 
 ```
 1541558124 [logging started]
@@ -126,7 +128,7 @@ The log file stores each keystroke on its own line, with an epoch timestamp with
 1541558133 c
 ```
 
-In the future, I might also add instrumentation for keyup events, so that it's more clear, for example, what letters are capitalized. It might be interesting to explore what information can be derived from these timestamps - it's possible that they could serve as a fingerprint of sorts, which has all sorts of implications for privacy.
+In the future, I might also add instrumentation for keyup events, so that it's more clear, for example, what letters are capitalized, or which are part of a keyboard shortcut. It might be also be interesting to explore what information can be derived from these timestamps - it's possible that they could serve as a fingerprint of sorts, which has all sorts of implications for privacy.
 
 ## Uninstallation
 
