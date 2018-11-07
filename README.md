@@ -31,7 +31,7 @@ $ sudo make startup
 The log file stores each keystroke on its own line, with an epoch timestamp with seconds level granularity - eventually I might change this to milliseconds level granularity, but implementation for that is [slightly more complicated](https://stackoverflow.com/questions/3756323/how-to-get-the-current-time-in-milliseconds-from-c-in-linux). The log file format is perhaps better explained with an example, shown below.
 
 ```
- 1541558124 [logging started]
+1541558124 [logging started]
 1541558126 [left-shift]
 1541558126 t
 1541558126 [left-shift]
