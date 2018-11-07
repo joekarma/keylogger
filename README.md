@@ -128,7 +128,7 @@ The log file format is best explained with an example, shown below.
 1541558133 c
 ```
 
-In the future, I might also add instrumentation for keyup events, so that it's more clear, for example, what letters are capitalized, or which are part of a keyboard shortcut. It might be also be interesting to explore what information can be derived from these timestamps - it's possible that they could serve as a fingerprint of sorts, which has all sorts of implications for privacy.
+In the future, I might also add instrumentation for keyup events, so that it's more clear, for example, what letters are capitalized, or which are part of a keyboard shortcut. It might be also be interesting to explore what information can be derived from these timestamps - it's possible that they could serve as a fingerprint of sorts, similar to gait detection, which has all sorts of implications for online privacy.
 
 ## Uninstallation
 
